@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTextBackground"
+    tools:context=".LoginActivity">
+
+
+    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+        android:id="@+id/loginFieldBoxes"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+
+
+        app:helperTextColor="@color/textColor"
+
+        app:labelText="Логин"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:primaryColor="@color/colorAccent"
+        app:secondaryColor="@color/textColor"
+        app:panelBackgroundColor="@color/colorTextBackgroundSecondary"
+
+        >
+
+        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+
+            android:id="@+id/login_ed_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorTextBackgroundSecondary"
+
+            />
+    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
+    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+        android:id="@+id/passwordFieldBoxes"
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="184dp"
+        app:labelText="Пароль"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:panelBackgroundColor="@color/colorTextBackgroundSecondary"
+        app:primaryColor="@color/colorAccent"
+        app:secondaryColor="@color/textColor">
+
+        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+            android:id="@+id/pass_ed_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:password="true"
+            android:textColor="#FFFFFF"
+
+            />
+    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
+    <FrameLayout
+        android:id="@+id/frameLayout2"
+        android:layout_width="329dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:background="@drawable/state_select"
+            android:onClick="onClick"
+            android:text="Войти"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorTextBackgroundSecondary"
+            android:indeterminateTintMode="src_atop"
+            android:translationZ="2dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>
