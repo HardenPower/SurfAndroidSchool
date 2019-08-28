@@ -35,10 +35,17 @@ public class LoginResponse {
     public String getAccessToken(){
         return this.accessToken;
     }
+    public int getId(){ return this.userInfo.id; }
 
     public String getUsername(){
         return this.userInfo.username;
     }
+    public String getFirstName() {return this.userInfo.firstName; }
+    public String getLastName() {return this.userInfo.lastName; }
+    public String getUserDescription() {return this.userInfo.userDescription; }
+
+
+
 
 
 

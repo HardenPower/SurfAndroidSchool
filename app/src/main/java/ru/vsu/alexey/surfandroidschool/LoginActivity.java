@@ -1,14 +1,29 @@
 package ru.vsu.alexey.surfandroidschool;
 
-import android.os.Handler;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+//import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
+import ru.vsu.alexey.surfandroidschool.SharedPreferencesUtil.SharedPreferencesUtil;
+import ru.vsu.alexey.surfandroidschool.UserAuthorization.LoginRequest;
+import ru.vsu.alexey.surfandroidschool.UserAuthorization.LoginResponse;
+import ru.vsu.alexey.surfandroidschool.UserAuthorization.NetworkService;
 import studio.carbonylgroup.textfieldboxes.ExtendedEditText;
 import studio.carbonylgroup.textfieldboxes.TextFieldBoxes;
+
+import android.support.design.widget.Snackbar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,12 +59,73 @@ public class LoginActivity extends AppCompatActivity {
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
-
     }
+
+
     public void onClick(View view) {
         loginButton.setText("error");
         progressBar.setVisibility(ProgressBar.VISIBLE);
-        new Handler().postDelayed(new Runnable() {
+        final String login = loginFieldText.getText().toString();
+        String password = passwordFieldText.getText().toString();
+
+        final LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setlogin(login);
+        loginRequest.setpassword(password);
+
+        Boolean checkValidate = true;
+        if (!ValidateFields(login, true)) {
+            loginFieldBoxes.setError(errorMessage, false);
+            checkValidate = false;
+        }
+        if (!ValidateFields(password, false)) {
+            passwordFieldBoxes.setError(errorMessage, false);
+            checkValidate = false;
+        }
+
+        final Snackbar snackbar = Snackbar.make(view, "Во время запроса произошла ошибка, возможно вы неверно ввели логин/пароль", Snackbar.LENGTH_SHORT);
+        View sbView = snackbar.getView();
+        sbView.setBackgroundColor(Color.parseColor("#FF575D"));
+
+        if (checkValidate) {
+            NetworkService.getInstance()
+                    .getAuthorizationInterface()
+                    .postData(loginRequest)
+                    .enqueue(new Callback<LoginResponse>() {
+                        @Override
+                        public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                            LoginResponse loginResponse = response.body();
+
+                            SharedPreferencesUtil.putString(SharedPreferencesUtil.TOKEN, loginResponse.getAccessToken());
+                            SharedPreferencesUtil.putInt(SharedPreferencesUtil.ID, loginResponse.getId());
+                            SharedPreferencesUtil.putString(SharedPreferencesUtil.USERNAME, loginResponse.getUsername());
+                            SharedPreferencesUtil.putString(SharedPreferencesUtil.FIRSTNAME, loginResponse.getFirstName());
+                            SharedPreferencesUtil.putString(SharedPreferencesUtil.LASTNAME, loginResponse.getLastName());
+                            SharedPreferencesUtil.putString(SharedPreferencesUtil.USER_DESCRIPTION, loginResponse.getUserDescription());
+
+                            progressBar.setVisibility(ProgressBar.INVISIBLE);
+                            loginButton.setText("Войти");
+
+                            Intent intent = new Intent(LoginActivity.this,
+                                    MemesActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<LoginResponse> call, Throwable t) {
+                            t.printStackTrace();
+
+                            snackbar.show();
+                            progressBar.setVisibility(ProgressBar.INVISIBLE);
+                            loginButton.setText("Войти");
+                        }
+                    });
+        } else {
+            progressBar.setVisibility(ProgressBar.INVISIBLE);
+            loginButton.setText("Войти");
+        }
+
+/*        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -60,19 +136,20 @@ public class LoginActivity extends AppCompatActivity {
                 passwordFieldBoxes.setError(errorMessage, false);
 
             }
-        }, 1000);
+        }, 1000); */
     }
+
     private boolean ValidateFields(String textEdit, boolean isLogin) {
         if (textEdit.equals("")) {
             errorMessage = "Поле не может быть пустым";
             return false;
         }
-        if (isLogin && !textEdit.matches("(\\\\+*)\\\\d{11}\"")) {
+        if (isLogin && !textEdit.matches("(\\+*)\\d{11}")) {
             errorMessage = "Логином должен быть номер телефона";
             return false;
         }
 
-        if (isLogin && !textEdit.matches("\\d{3}")) {
+        if (!isLogin && !textEdit.matches("\\d{3}")) {
             errorMessage = "Пароль должен состоять из 3 цифр";
             return false;
 
@@ -80,5 +157,4 @@ public class LoginActivity extends AppCompatActivity {
 
         return true;
     }
-
 }
