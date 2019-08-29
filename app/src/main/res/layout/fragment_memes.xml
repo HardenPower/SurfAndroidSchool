@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTextBackground"
+    android:padding="6dp"
+    android:paddingBottom="0dp"
+    >
+    <TextView
+        android:id="@+id/text_part_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Не удалось загрузить ленту"
+        android:textSize="14dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="#9FACC7"
+        />
+    <TextView
+        android:id="@+id/text_part_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_part_1"
+        android:text="Обновите экран или попробуйте позже."
+
+        android:textSize="14dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textColor="#9FACC7"
+        />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/memes_recycler_view"
+            android:layout_width="411dp"
+            android:layout_height="match_parent" />
+
+
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+
+</RelativeLayout>

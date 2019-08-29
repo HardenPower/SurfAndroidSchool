@@ -1,18 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MemActivity">
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".ui.MemesActivity"
+android:background="@color/colorTextBackground">
+
+<include layout="@layout/toolbar" />
+
+<FrameLayout
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MemesActivity">
+    android:layout_above="@id/bottom_bar"
+    android:layout_below="@id/toolbar_actionbar"
+    >
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="142dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="181dp"
-        android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>
+
+<com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+    android:id="@+id/bottom_bar"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:layout_alignParentBottom="true"
+    android:paddingTop="14dp"
+    android:background="@color/colorTextBackgroundSecondary"
+    app:itemIconTint="@layout/bottom_navigation_item_background_colors"
+    app:labelVisibilityMode="unlabeled"
+    app:menu="@menu/menu_bottom_navigation"/>
+</RelativeLayout>

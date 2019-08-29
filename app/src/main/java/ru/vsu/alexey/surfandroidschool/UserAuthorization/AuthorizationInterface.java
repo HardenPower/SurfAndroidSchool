@@ -7,12 +7,11 @@ import retrofit2.http.POST;
 
 
 
-public class AuthorizationInterface {
+public interface AuthorizationInterface {
 
     @POST("/auth/login")
 
-    public Call<LoginResponse> postData(@Body LoginRequest data) {
-        return null;
-    }
+    public Call<LoginResponse> postData(@Body LoginRequest data);
+
 
 }

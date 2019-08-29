@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/colorTextBackgroundSecondary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relative_layout"
+        android:background="@color/colorTextBackgroundSecondary"
+        >
+        <include layout="@layout/toolbar"
+            android:id="@+id/detail_toolbar"/>
+        <TextView
+            android:id="@+id/detail_title"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:text="Memes title"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:layout_below="@+id/detail_toolbar"
+            android:textStyle="bold"
+            android:textColor="#FFFF"
+            android:textSize="24sp"
+            />
+        <ImageView
+            android:id="@+id/detail_image_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_below="@id/detail_title"
+            android:adjustViewBounds="true"
+            android:background="@drawable/layout_bg"
+            />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_image_view"
+            android:id="@+id/linear_layout"
+            >
+
+            <TextView
+                android:id="@+id/detail_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="17dp"
+                android:text="20 дней назад"
+                android:textColor="#FFFF"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/detail_favorite_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="17dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginRight="17dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:src="@drawable/ic_favorites" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/detail_description"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_layout"
+            android:text="Описание мема"
+            android:textColor="#FFFF"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            android:textSize="14sp"
+            />
+
+
+    </RelativeLayout>
+</ScrollView>

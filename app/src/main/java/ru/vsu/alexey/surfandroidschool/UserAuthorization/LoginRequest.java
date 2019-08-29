@@ -1,6 +1,6 @@
 package ru.vsu.alexey.surfandroidschool.UserAuthorization;
 
-import com.google.gson.annotations.*;
+import com.google.gson.annotations.SerializedName;
 
 public class LoginRequest {
 

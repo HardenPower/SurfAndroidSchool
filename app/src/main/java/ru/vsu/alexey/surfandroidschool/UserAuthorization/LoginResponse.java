@@ -13,6 +13,21 @@ public class LoginResponse {
     private userInfo userInfo;
 
 
+
+
+    public String getAccessToken(){
+        return this.accessToken;
+    }
+    public int getId(){ return this.userInfo.id; }
+
+    public String getUsername(){
+        return this.userInfo.username;
+    }
+    public String getFirstName() {return this.userInfo.firstName; }
+    public String getLastName() {return this.userInfo.lastName; }
+    public String getUserDescription() {return this.userInfo.userDescription; }
+
+
     private class userInfo{
         @SerializedName("id")
         int id;
@@ -30,19 +45,6 @@ public class LoginResponse {
         private String userDescription;
 
     }
-
-
-    public String getAccessToken(){
-        return this.accessToken;
-    }
-    public int getId(){ return this.userInfo.id; }
-
-    public String getUsername(){
-        return this.userInfo.username;
-    }
-    public String getFirstName() {return this.userInfo.firstName; }
-    public String getLastName() {return this.userInfo.lastName; }
-    public String getUserDescription() {return this.userInfo.userDescription; }
 
 
 

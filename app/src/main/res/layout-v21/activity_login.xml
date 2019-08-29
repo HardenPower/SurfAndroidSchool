@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginContent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorTextBackground"
@@ -86,7 +87,7 @@
 
 
             android:background="@drawable/state_select"
-            android:onClick="onClick"
+
             android:text="Войти"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
